@@ -1,3 +1,4 @@
+//randomQA
 package android_Automation;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 
 public class randomQA {
-	
+
 	AppiumDriver<MobileElement> driver;
 	DesiredCapabilities caps = new DesiredCapabilities();
 	File Android_app = new File("./APP_apk/Random_v8.0_apkpure.com.apk");
@@ -34,21 +35,21 @@ public class randomQA {
 		caps.setCapability("appActivity", "com.vasilchenko.randomfree.MenuActivity");
 		driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), caps);
 		Thread.sleep(5000);
-		
+
 		//Verify Random
 		driver.findElement(By.xpath("//android.widget.TextView[@text='Random']")).isDisplayed();
 		//Generate Number
 		driver.findElement(By.xpath("//android.widget.Button[@text='Generate number']")).isDisplayed();
 		driver.findElement(By.xpath("//android.widget.Button[@text='Generate number']")).click();
-		
-		driver.findElement(By.xpath("//android.widget.TextView[@text='Random number:']")).isDisplayed();	
+
+		driver.findElement(By.xpath("//android.widget.TextView[@text='Random number:']")).isDisplayed();
 		driver.findElement(By.xpath("//android.widget.EditText[@resource-id='com.vasilchenko.randomfree:id/min']")).sendKeys("10");
 		driver.findElement(By.xpath("//android.widget.EditText[@resource-id='com.vasilchenko.randomfree:id/max']")).sendKeys("10");
 		driver.findElement(By.xpath("//android.widget.Button[@text='Generate']")).click();
 		driver.findElement(By.xpath("//android.widget.TextView[@resource-id='com.vasilchenko.randomfree:id/result']")).getText().equalsIgnoreCase("-1");
 		driver.navigate().back();
 	}
-	
+
 	@AfterMethod
 	public void CloseDriver() throws InterruptedException {
 
